@@ -3,14 +3,15 @@ package controllers
 import (
 	"encoding/json"
 	"go-backend/app/models"
+	"go-backend/app/services"
 	"net/http"
 )
 
-type userController struct {
-	Service *services.userService
+type UserController struct {
+	Service *services.UserService
 }
 
-func (c *userController) CreateUser(w http.ResponseWriter, r *http.Request) {
+func (c *UserController) CreateUser(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	json.NewDecoder(r.Body).Decode(&user)
 	err := c.Service.CreateUser(user)

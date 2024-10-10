@@ -3,15 +3,16 @@ package services
 import (
 	"errors"
 	"go-backend/app/models"
+	"go-backend/app/repositories"
 
 	"golang.org/x/crypto/bcrypt"
 )
 
-type userService struct {
-	Repo *repositories.userRepository
+type UserService struct {
+	Repo *repositories.UserRepository
 }
 
-func (s *userService) isUserDuplicated(user string) (bool, error) {
+func (s *UserService) isUserDuplicated(user string) (bool, error) {
 	users, err := s.Repo.GetAllUsers()
 	if err != nil {
 		return false, err
@@ -26,7 +27,7 @@ func (s *userService) isUserDuplicated(user string) (bool, error) {
 	return false, nil
 }
 
-func (s *userService) isNameDuplicated(name, patsurn, matsurn string) (bool, error) {
+func (s *UserService) isNameDuplicated(name, patsurn, matsurn string) (bool, error) {
 	users, err := s.Repo.GetAllUsers()
 	if err != nil {
 		return false, err
@@ -41,8 +42,8 @@ func (s *userService) isNameDuplicated(name, patsurn, matsurn string) (bool, err
 	return false, nil
 }
 
-func (s *userService) CreateUser(user models.User) error {
-	isDuplicated, err := s.isUserDuplicated(user.User)
+func (s *UserService) CreateUser(user models.User) error {
+	isDuplicated, err := s.isUserDuplicated(user.Username)
 	if err != nil {
 		return err
 	}

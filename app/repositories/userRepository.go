@@ -7,11 +7,11 @@ import (
 	"cloud.google.com/go/firestore"
 )
 
-type userRepository struct {
+type UserRepository struct {
 	Client *firestore.Client
 }
 
-func (r *userRepository) CreateUser(user models.User) error {
+func (r *UserRepository) CreateUser(user models.User) error {
 	_, _, err := r.Client.Collection("users").Add(context.Background(), user)
 	return err
 }
