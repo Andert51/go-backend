@@ -11,13 +11,15 @@ import (
 	"google.golang.org/api/option"
 )
 
-func InitializeFirebaseApp() *firebase.App {
+var FirebaseApp *firebase.App
+
+func InitializeFirebaseApp() {
 	opt := option.WithCredentialsFile("./firebaseServiceAccount.json")
 	app, err := firebase.NewApp(context.Background(), nil, opt)
 	if err != nil {
 		log.Fatal("Failed to Initialize Firebase App: %v ", err)
 	}
-	return app
+	FirebaseApp = app
 }
 
 func GetAuthClient(app *firebase.App) *auth.Client {
