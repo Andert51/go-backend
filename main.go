@@ -13,6 +13,7 @@ func main() {
 	config.InitializeFirebaseApp()
 	router := mux.NewRouter()
 	routes.InitializeRoutes(router)
+	//routes.Use(middleware.AuthMiddleware())
 	log.Println("Server Running in port 8080")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

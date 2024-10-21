@@ -72,7 +72,7 @@ func (r *UserRepository) GetUserByUsername(username string) (*models.User, error
 	iter := client.Collection("users_go").Where("Username", "==", username).Documents(ctx)
 	doc, err := iter.Next()
 
-	if err != iterator.Done {
+	if err == iterator.Done {
 		return nil, nil
 	}
 	if err != nil {
@@ -85,7 +85,7 @@ func (r *UserRepository) GetUserByUsername(username string) (*models.User, error
 
 }
 
-func (r *UserRepository) GetUserByRole(rol string) ([]models.User, error) {
+func (r *UserRepository) GetUserByRol(rol string) ([]models.User, error) {
 	ctx := context.Background()
 	client, err := config.FirebaseApp.Firestore(ctx)
 	if err != nil {

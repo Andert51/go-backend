@@ -10,7 +10,7 @@ type User struct {
 	City     string `json:"city"`
 	State    string `json:"state"`
 	Username string `json:"username"`
-	Password string `json:"_"`
+	Password string `json:"password"`
 	Rol      string `json:"rol"`
 	Image    string `json:"image"`
 }

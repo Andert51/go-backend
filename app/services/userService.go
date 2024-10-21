@@ -123,5 +123,5 @@ func (s *UserService) GetUserByUsername(username string) (*models.User, error) {
 }
 
 func (s *UserService) GetUserByRol(rol string) ([]models.User, error) {
-	return s.Repo.GetUserByRole(rol)
+	return s.Repo.GetUserByRol(rol)
 }
